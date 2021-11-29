@@ -62,7 +62,7 @@ body {
   display: flex;
   height: 30px;
   justify-content: center;
-  transition: 0.4 ease;
+  transition: 0.7s ease;
   width: 30px;
 }
 
