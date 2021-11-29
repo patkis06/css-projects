@@ -1,28 +1,33 @@
+// DOM elements
 const progress = document.getElementById('progress');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 const circles = document.querySelectorAll('.circle');
 
+// State of the active circle
 let current = 1;
 
+// Events
 next.addEventListener('click', () => {
-  if (current < circles.length) {
-    prev.removeAttribute('disabled', 'disabled')
+  const circleLength = circles.length;
+  if (current < circleLength) {
     current++;
     progress.style.width = (current - 1) * 33 + '%';
+    prev.removeAttribute('disabled', 'disabled')
     updateCircle();
   }
-  if (current === circles.length) {
+  if (current === circleLength) {
+    console.log(current)
     next.setAttribute('disabled', 'disabled')
   }
 });
 
 prev.addEventListener('click', () => {
   if (current > 1) {
-    next.removeAttribute('disabled', 'disabled')
     current--;
     const width = parseInt(progress.style.width) - 33;
     progress.style.width = width + '%';
+    next.removeAttribute('disabled', 'disabled')
     updateCircle();
   }
   if (current === 1) {
@@ -30,6 +35,7 @@ prev.addEventListener('click', () => {
   }
 });
 
+// Functions
 function updateCircle() {
   circles.forEach((circle, index) => {
     if (index > current - 1) {
